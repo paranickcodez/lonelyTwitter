@@ -1,71 +1,58 @@
 package ca.ualberta.cs.lonelytwitter;
 
-import android.widget.ListView;
-import java.util.ArrayList;
 import java.util.Date;
 
-/**
- * Created by nparada on 9/13/17.
- */
+import io.searchbox.annotations.JestId;
 
-public abstract class Tweet implements Tweetable{
+public abstract class Tweet implements Tweetable {
     private String message;
     private Date date;
-    private ArrayList<Mood> moodList;
-
-    public void setMoodList(ArrayList<Mood> moodList) {
-        this.moodList = moodList;
-    }
-
-    public ArrayList<Mood> getMoodList() {
-        return moodList;
-    }
+    @JestId
+    private String id;
 
     public Tweet(String message){
-        moodList = new ArrayList<Mood>();
-        date = new Date();
-        this.message = message; /**for this message instance*/
+        this.message = message;
+        this.date = new Date();
     }
 
     public Tweet(String message, Date date){
-        moodList = new ArrayList<Mood>();
-        this.date = date;
         this.message = message;
+        this.date = date;
     }
 
-    public void AddMood(Mood mood){
-            this.moodList.add(mood);
+    public String getId() {
+        return id;
     }
 
-    public String getMessage(){
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString(){
         return message;
-    }
-
-
-    public void setMessage(String message) throws TweettoolongException{
-        if (message.length() < 140){
-            this.message = message;
-        }
-        else{
-            throw new TweettoolongException();
-        }
-
-
     }
 
     public abstract Boolean isImportant();
 
-    public Date getDate() {
-        return date;
+
+    public void setMessage(String message) throws TweetTooLongException {
+        if (message.length() > 140){
+            //Do Something!
+            throw new TweetTooLongException();
+        }
+        this.message = message;
     }
 
     public void setDate(Date date) {
         this.date = date;
     }
 
-    @Override
-    public String toString(){
-        return date.toString() + " | " + message;
+    public String getMessage() {
+        return message;
     }
 
+    public Date getDate() {
+        return date;
+    }
 }
