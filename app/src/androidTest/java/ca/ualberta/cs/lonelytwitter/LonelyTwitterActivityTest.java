@@ -7,7 +7,7 @@ import android.widget.ListView;
 
 import com.robotium.solo.Solo;
 
-import junit.framework.TestCase;
+// Unnecessary import of test case utility import junit.framework.TestCase;
 
 public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2 {
 
@@ -22,7 +22,8 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2 
     }
 
     public void testStart() throws Exception {
-        Activity activity = getActivity();
+        //Unused variable set for get activity removed.
+        getActivity();
     }
 
     public void testTweet() {

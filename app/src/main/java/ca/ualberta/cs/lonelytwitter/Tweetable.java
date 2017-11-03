@@ -2,10 +2,11 @@ package ca.ualberta.cs.lonelytwitter;
 
 
 import java.util.Date;
-
-public interface Tweetable {
-    public String getMessage();
-
-    public Date getDate();
+//Making interface package private
+interface Tweetable {
+    //Public is redundent
+    String getMessage();
+    //Public is redundent
+    Date getDate();
 
 }
